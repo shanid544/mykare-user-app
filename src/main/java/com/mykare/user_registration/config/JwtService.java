@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-
 import java.security.Key;
 import java.util.Date;
 
@@ -43,7 +42,6 @@ public class JwtService {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
-
 
 
     public boolean validateToken(String token) {
@@ -82,7 +80,7 @@ public class JwtService {
 
     }
 
-    public long getExpirationTime(){
+    public long getExpirationTime() {
         return Long.parseLong(EXPIRATION);
     }
 }

@@ -3,17 +3,14 @@ package com.mykare.user_registration.cucumber.steps;
 import com.mykare.user_registration.config.JwtAuthenticationFilter;
 import com.mykare.user_registration.config.JwtService;
 import com.mykare.user_registration.dto.UserRequestDTO;
-import com.mykare.user_registration.dto.UserResponseDTO;
 import com.mykare.user_registration.dto.ValidationRequestDTO;
 import com.mykare.user_registration.dto.ValidationResponseDTO;
-import com.mykare.user_registration.model.Role;
 import com.mykare.user_registration.repo.UserRepository;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
-import io.jsonwebtoken.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,8 +20,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -76,8 +71,8 @@ public class FullUserFlowSteps {
 
 
         String url = apiUrl + port + "/api/v1/register";
-        ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.POST, 
-            new HttpEntity<>(userRequestDTO), Void.class);
+        ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.POST,
+                new HttpEntity<>(userRequestDTO), Void.class);
         assertEquals(201, response.getStatusCodeValue());
     }
 
@@ -137,14 +132,13 @@ public class FullUserFlowSteps {
     @Then("the admin gets the token with email {string} and password {string}")
     public void theAdminGetsTheTokenWithEmailAndPassword(String email, String password) {
         ValidationRequestDTO loginRequest = new ValidationRequestDTO(email, password);
-        String url = apiUrl + port +"/api/v1/validate";
+        String url = apiUrl + port + "/api/v1/validate";
         ResponseEntity<ValidationResponseDTO> response = restTemplate.exchange(url, HttpMethod.POST,
                 new HttpEntity<>(loginRequest), ValidationResponseDTO.class);
         assertEquals(200, response.getStatusCodeValue());
 
         adminToken = response.getBody().token();
     }
-
 
 
     @When("the admin deletes the user with email {string}")
@@ -163,7 +157,5 @@ public class FullUserFlowSteps {
     public void userShouldBeDeletedSuccessfully(String email) {
         assertFalse(userRepository.existsByEmail(email));
     }
-
-
 
 }

@@ -3,8 +3,8 @@ Feature: User Registration, Login, and Deletion by Admin
   Scenario Outline: Register, get token, access all users, and delete user by Admin
     Given the user does not already exist with email "<user_email>"
     When the user registers with the following details:
-      | name      | email             | gender | password  |
-      | <user_name> | <user_email>     | <user_gender> | <user_password> |
+      | name        | email        | gender        | password        |
+      | <user_name> | <user_email> | <user_gender> | <user_password> |
     Then the user is successfully registered with email "<user_email>"
 
     When the user logs in with email "<user_email>" and password "<user_password>"
@@ -20,6 +20,6 @@ Feature: User Registration, Login, and Deletion by Admin
     Then the user with email "<user_email>" should be deleted successfully
 
     Examples:
-      | user_name  | user_email         | user_gender | user_password | admin_email       | admin_password |
-      | testuser   | test@mykare.com    | male        | password1     | admin@example.com | adminpassword  |
+      | user_name | user_email      | user_gender | user_password | admin_email       | admin_password |
+      | testuser  | test@mykare.com | male        | password1     | admin@example.com | adminpassword  |
 

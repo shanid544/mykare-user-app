@@ -4,9 +4,10 @@ import com.mykare.user_registration.model.Gender;
 import com.mykare.user_registration.model.Role;
 
 public record UserResponseDTO(
-    Long id,
-    String name,
-    String email,
-    Gender gender,
-    Role role
-) {}
+        Long id,
+        String name,
+        String email,
+        Gender gender,
+        Role role
+) {
+}

@@ -18,6 +18,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+
     @Operation(summary = "To register the user")
     @PostMapping("/v1/register")
     public ResponseEntity<UserResponseDTO> registerUser(@RequestBody @Valid UserRequestDTO userRequestDTO) {
@@ -31,13 +32,15 @@ public class UserController {
         ValidationResponseDTO response = userService.validateUser(validationRequestDTO);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
     @Operation(summary = "To get all users by admin or user by passing their token")
     @GetMapping("/v1/users")
-    public ResponseEntity<List<UserResponseDTO>> getAllUsers( @RequestParam(defaultValue = "0") int page,
-                                              @RequestParam(defaultValue = "10") int size) {
+    public ResponseEntity<List<UserResponseDTO>> getAllUsers(@RequestParam(defaultValue = "0") int page,
+                                                             @RequestParam(defaultValue = "10") int size) {
         List<UserResponseDTO> users = userService.getAllUsers(page, size);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
+
     @Operation(summary = "To delete the user by admin passing admin's token")
     @DeleteMapping("/v1/users/{email}")
     @PreAuthorize("hasRole('ADMIN')")

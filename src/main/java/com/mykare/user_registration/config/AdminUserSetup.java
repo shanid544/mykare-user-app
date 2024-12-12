@@ -27,7 +27,6 @@ public class AdminUserSetup implements CommandLineRunner {
     private String adminPassword;
 
 
-
     public AdminUserSetup(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
