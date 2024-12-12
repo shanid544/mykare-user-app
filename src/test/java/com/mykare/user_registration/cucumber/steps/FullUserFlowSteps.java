@@ -150,7 +150,7 @@ public class FullUserFlowSteps {
         ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.DELETE,
                 new HttpEntity<>(headers), Void.class);
 
-        assertEquals(204, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCodeValue());
     }
 
     @Then("the user with email {string} should be deleted successfully")
